@@ -24,7 +24,7 @@ public class Subscription {
     @Column(name = "product_id")
     private Long productId;
 
-    @Column(name = "customer_id")
+    @Column(name = "client_id")
     private Long customerId;
 
     @Enumerated(EnumType.STRING)
