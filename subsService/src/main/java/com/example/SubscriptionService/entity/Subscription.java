@@ -1,0 +1,36 @@
+package com.example.SubscriptionService.entity;
+
+import com.example.shared.EventType;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "subscriptions")
+@NoArgsConstructor
+@AllArgsConstructor
+public class Subscription {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "product_id")
+    private Long productId;
+
+    @Column(name = "customer_id")
+    private Long customerId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "event_type", nullable = false)
+    private EventType eventType;
+
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+}
