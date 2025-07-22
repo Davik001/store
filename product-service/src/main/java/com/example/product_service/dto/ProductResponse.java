@@ -1,15 +1,17 @@
-package com.example.product_service;
+package com.example.product_service.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 @AllArgsConstructor
-public class ProductResponseDTO {
+@NoArgsConstructor
+public class ProductResponse {
     private Long id;
     private String name;
     private String description;

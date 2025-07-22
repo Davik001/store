@@ -1,12 +1,16 @@
 package com.example.client_service.entity;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-@Entity
+
+@Table(name = "client")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -14,19 +18,19 @@ import lombok.Setter;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name = "first_name")
+    @Column
     String firstName;
 
-    @Column(name = "last_name")
+    @Column
     String lastName;
 
-    @Column(unique = true, nullable = false)
+    @Column
+    @Pattern(regexp = ".*@.*", message = "Email must contain '@'")
     String email;
 
-    @Column(unique = true, nullable = false)
+    @Column
     String phone;
 
 

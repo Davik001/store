@@ -1,4 +1,7 @@
 package com.example.client_service.dto;
 
-public record CreateClient(String first_name, String last_name, String email, String phone) {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record CreateClient(@JsonProperty("first_name")String firstname,
+                           @JsonProperty("last_name")String lastname, String email, String phone) {
 }

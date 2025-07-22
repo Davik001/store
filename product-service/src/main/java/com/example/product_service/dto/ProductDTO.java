@@ -1,18 +1,19 @@
-package com.example.client_service.dto;
+package com.example.product_service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClientResponse {
+public class ProductDTO {
     private Long id;
-    private String first_name;
-    private String last_name;
-    private String email;
-    private String phone;
+    private String name;
+    private String description;
+    private BigDecimal price;
 }
