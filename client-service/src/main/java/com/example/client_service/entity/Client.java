@@ -20,10 +20,10 @@ public class Client {
     @Id
     Long id;
 
-    @Column
+    @Column("first_name")
     String firstName;
 
-    @Column
+    @Column("last_name")
     String lastName;
 
     @Column
