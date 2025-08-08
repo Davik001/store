@@ -5,13 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-public class ResponseEmp {
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Role role;
-}
+
+public record ResponseEmp(
+     Long id,
+     String firstName,
+     String lastName,
+     String email,
+     Role role){}
+

@@ -12,15 +12,25 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface EmployeeMapper {
 
-    Emp toDto(Employee employee);
+//    Emp toDto(Employee employee);
+//
+//    ResponseEmp toResponseDto(Employee employee);
+//
+//    List<ResponseEmp> toResponseDtoList(List<Employee> employees);
+//
+//    Employee toEntity(Emp dto);
+//
+//    Employee toEntity(CreateEmp createDto);
+//
+//    void updateFromDto(UpdateEmp updateDto, @MappingTarget Employee employee);
 
-    ResponseEmp toResponseDto(Employee employee);
+    // Создание сущности из CreateEmp
+    Employee toEntity(CreateEmp dto);
 
-    List<ResponseEmp> toResponseDtoList(List<Employee> employees);
+    // Обновление сущности из UpdateEmp
+    void updateEntityFromDto(UpdateEmp dto, @MappingTarget Employee entity);
 
-    Employee toEntity(Emp dto);
+    // Преобразование Entity в Response DTO
+    ResponseEmp toResponseEmp(Employee entity);
 
-    Employee toEntity(CreateEmp createDto);
-
-    void updateFromDto(UpdateEmp updateDto, @MappingTarget Employee employee);
 }

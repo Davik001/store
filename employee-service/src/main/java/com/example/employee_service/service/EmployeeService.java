@@ -35,7 +35,7 @@ public class EmployeeService {
                        log.warn("Employee with {} id not found", id);
                        return Mono.error(new EmployeeNotFoundException("Employee not found"));
                 }))
-                .map(mapper::toResponseDto)
+                .map(mapper::toResponseEmp)
                 .doOnSuccess(response -> log.info("Return employee response {}", response));
     }
 
@@ -43,7 +43,7 @@ public class EmployeeService {
         log.info("Getting all employees");
         return repo.findAll()
                 .doOnNext(employee -> log.debug("Found employee: {}", employee))
-                .map(mapper::toResponseDto);
+                .map(mapper::toResponseEmp);
     }
 
     public Mono<ResponseEmp> createEmployee(CreateEmp employee) {
@@ -59,7 +59,7 @@ public class EmployeeService {
                     log.debug("Mapped entity for creation: {}", entity);
                     return repo.save(entity)
                             .doOnSuccess(saved -> log.info("Successfully created employee with id: {}", saved.getId()))
-                            .map(mapper::toResponseDto);
+                            .map(mapper::toResponseEmp);
                 });
     }
 
@@ -86,11 +86,11 @@ public class EmployeeService {
                 }))
                 .flatMap(exists -> {
                     log.debug("Existing employee before update: {}", exists);
-                    mapper.updateFromDto(employee, exists);
+                    mapper.updateEntityFromDto(employee, exists);
                     log.debug("Employee after update {}", exists);
                     return repo.save(exists)
                             .doOnSuccess(updated -> log.info("Successfully updated employee with id: {}", updated.getId()))
-                            .map(mapper::toResponseDto);
+                            .map(mapper::toResponseEmp);
                 });
     }
 }

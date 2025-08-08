@@ -32,7 +32,7 @@ public class EmployeeController {
 
         return employeeService.createEmployee(createEmp)
                 .map(saveEmployee -> {
-                    log.info("Employee successfully created with id={}", saveEmployee.getId());
+                    log.info("Employee successfully created with id={}", saveEmployee.id());
                     return ResponseEntity.status(HttpStatus.CREATED).body(saveEmployee);
                 })
                 .onErrorResume(EmployeeAlreadyExistsException.class, e -> {
@@ -60,7 +60,7 @@ public class EmployeeController {
         log.info("Received GET /employees");
 
         return employeeService.getAllEmployees()
-                .doOnNext(r -> log.info("Employee with id={} successfully retrieved", r.getId()));
+                .doOnNext(r -> log.info("Employee with id={} successfully retrieved", r.id()));
     }
 
     @PutMapping("/id")
