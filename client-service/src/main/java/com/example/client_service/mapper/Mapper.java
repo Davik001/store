@@ -5,10 +5,7 @@ import com.example.client_service.dto.ClientResponse;
 import com.example.client_service.dto.CreateClient;
 import com.example.client_service.dto.UpdateClient;
 import com.example.client_service.entity.Client;
-import org.mapstruct.BeanMapping;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @org.mapstruct.Mapper(componentModel = "spring")
 public interface Mapper {

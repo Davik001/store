@@ -24,6 +24,7 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class ClientController {
 
+    @Autowired
     private final ClientService clientService;
 
     @GetMapping("/{id}")
