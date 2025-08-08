@@ -7,13 +7,9 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class ProductResponse {
-    private Long id;
-    private String name;
-    private String description;
-    private BigDecimal price;
+public record ProductResponse (
+    Long id,
+    String name,
+    String description,
+    BigDecimal price){
 }

@@ -1,14 +1,16 @@
 package com.example.product_service.entity;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 
-@Entity
+@Table("product")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,16 +18,15 @@ import java.math.BigDecimal;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column("id")
     Long id;
 
-    @Column(nullable = false, length = 99)
+    @Column("name")
     String name;
 
-    @Column
+    @Column("description")
     String description;
 
-    @Column(nullable = false, precision = 10, scale = 2)
+    @Column("price")
     BigDecimal price;
 }

@@ -37,6 +37,26 @@ services:
       timeout: 5s
       retries: 5
 
+      # БД для ProductService
+  product_db:
+        image: postgres:13.16
+        container_name: product_db
+        restart: always
+        environment:
+          POSTGRES_USER: chief
+          POSTGRES_PASSWORD: root
+          POSTGRES_DB: product_db
+        ports:
+          - '5438:5432'  # Внешний 5438 → внутренний 5432
+        volumes:
+          - productdata:/var/lib/postgresql/data
+        healthcheck:
+          test: [ "CMD-SHELL", "pg_isready -U chief -d product_db" ]
+          interval: 10s
+          timeout: 5s
+          retries: 5
+
+
   # БД для SubscriptionService
   subs_db:
     image: postgres:13.16
@@ -159,3 +179,4 @@ volumes:
   clientdata: # volume для client_db
   orderdata:    # volume для order_db
   employeedata:   # volume для employee_db
+  productdata:
