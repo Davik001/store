@@ -1,0 +1,6 @@
+CREATE TABLE order (
+    id SERIAL PRIMARY KEY,
+    client_id BIGINT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    status VARCHAR(50) NOT NULL
+);

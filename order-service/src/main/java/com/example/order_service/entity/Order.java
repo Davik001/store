@@ -1,15 +1,18 @@
-package com.example.order_service;
+package com.example.order_service.entity;
 
+import com.example.order_service.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Table(name = "order")
 @Entity
 @Getter
 @Setter
@@ -26,10 +29,12 @@ public class Order {
     Long clientId;
 
     @Column(name = "created_at", nullable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private String status;
+    private OrderStatus status;
 
     // Связь с order_item
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
