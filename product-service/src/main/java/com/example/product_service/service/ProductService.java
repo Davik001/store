@@ -10,6 +10,7 @@ import com.example.product_service.repo.PorductRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -26,6 +27,7 @@ public class ProductService {
         this.mapper = mapper;
     }
 
+    @Transactional(readOnly = true)
     public Mono<ProductResponse> getProduct(Long id) {
         log.info("Get product with id {}", id);
 
@@ -39,6 +41,7 @@ public class ProductService {
                 .doOnSuccess(productResponse -> log.info("Return product {}", productResponse));
     }
 
+    @Transactional(readOnly = true)
     public Flux<ProductResponse> getAllProducts() {
         log.info("get All Products called");
 
@@ -58,6 +61,7 @@ public class ProductService {
                 .map(mapper::toResponseDto);
     }
 
+    @Transactional
     public Mono<ProductResponse> updateProduct(Long id, ProductUpdate productUpdate) {
         log.info("Update product with id {}", id);
 
@@ -78,6 +82,7 @@ public class ProductService {
                 });
     }
 
+    @Transactional
     public Mono<Void> deleteProduct(Long id){
         log.info("Deleting product with id {}", id);
 

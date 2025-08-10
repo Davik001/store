@@ -1,4 +1,4 @@
-CREATE TABLE order (
+CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
     client_id BIGINT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),

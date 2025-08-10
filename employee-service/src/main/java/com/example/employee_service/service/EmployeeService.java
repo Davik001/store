@@ -11,6 +11,7 @@ import com.example.employee_service.dto.ResponseEmp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -27,6 +28,7 @@ public class EmployeeService {
         this.repo = repo;
     }
 
+    @Transactional(readOnly = true)
     public Mono<ResponseEmp> getEmployee(Long id) {
         log.info("Getting employee with id: {}", id);
         return repo.findById(id).
@@ -39,6 +41,7 @@ public class EmployeeService {
                 .doOnSuccess(response -> log.info("Return employee response {}", response));
     }
 
+    @Transactional(readOnly = true)
     public Flux<ResponseEmp> getAllEmployees() {
         log.info("Getting all employees");
         return repo.findAll()
@@ -63,6 +66,7 @@ public class EmployeeService {
                 });
     }
 
+    @Transactional
     public Mono<Void> deleteEmployee(Long id) {
         log.info("Attempting to delete employee with id: {}", id);
 
@@ -77,6 +81,7 @@ public class EmployeeService {
                 });
     }
 
+    @Transactional
     public Mono<ResponseEmp> updateEmployee(Long id, UpdateEmp employee) {
         log.info("Attempting to update employee with id: {}", id);
         return repo.findById(id)

@@ -1,4 +1,4 @@
-package com.example.product_service.dto;
+package com.example.shared;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

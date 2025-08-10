@@ -1,7 +1,7 @@
 package com.example.product_service.mapper;
 
 import com.example.product_service.dto.ProductCreate;
-import com.example.product_service.dto.ProductDTO;
+import com.example.shared.ProductDTO;
 import com.example.product_service.dto.ProductResponse;
 import com.example.product_service.dto.ProductUpdate;
 import com.example.product_service.entity.Product;
